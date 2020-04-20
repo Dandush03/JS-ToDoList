@@ -1,0 +1,38 @@
+@import 'variables';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $c-body;
+  display: grid;
+  grid-gap: $space * 2;
+  grid-template-areas: "header header header header"
+                       "menu main main main"
+                       "menu main main main"
+                       "menu main main main"
+                       "footer footer footer footer";
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: $c-header;
+  grid-area: header;
+}
+
+.left-menu {
+  background-color: $c-left-menu;
+  grid-area: menu;
+}
+
+main {
+  background-color: $c-main;
+  grid-area: main;
+}
+
+footer {
+  background-color: $c-footer;
+  grid-area: footer;
+}
