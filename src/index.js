@@ -1,7 +1,10 @@
 import './index.scss';
 
+// eslint-disable-next-line
 let bodyStructure = null;
 
+
+/** Crete the body structure */
 const BodyStructure = () => {
   const arrElements = [];
 

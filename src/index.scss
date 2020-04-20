@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 
 * {
   box-sizing: border-box;
@@ -9,11 +9,11 @@ body {
   display: grid;
   grid-gap: $space * 2;
   grid-template-areas:
-    "header header header header"
-    "menu main main main"
-    "menu main main main"
-    "menu main main main"
-    "footer footer footer footer";
+  'header header header header'
+  'menu main main main'
+  'menu main main main'
+  'menu main main main'
+  'footer footer footer footer';
   margin: 0;
   padding: 0;
 }
