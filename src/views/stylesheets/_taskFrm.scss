@@ -35,10 +35,10 @@ form {
     margin: $space * 2;
     padding: 0;
     width: $space * 21;
+  }
 
-    >span:first-child {
-      margin-right: $space * 2;
-    }
+  span {
+    margin-right: $space * 2;
   }
 
   >div {
