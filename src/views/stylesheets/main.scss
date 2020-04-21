@@ -8,7 +8,7 @@ main {
   border-color: $c-border-row;
   border-radius: $space;
   border-style: solid;
-  border-width: $space / $space;
+  border-width: $space / 5;
   display: flex;
   flex-direction: column;
   margin: $space * 2;
@@ -23,7 +23,7 @@ main {
   border-color: $c-border-row;
   border-radius: $space;
   border-style: solid;
-  border-width: $space / $space;
+  border-width: $space / 5;
   display: flex;
   justify-content: space-evenly;
   margin: $space * 2 $space * 5;
