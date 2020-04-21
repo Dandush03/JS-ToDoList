@@ -3,7 +3,7 @@ import leftMenuDiv from './views/javascripts/left-menu';
 import { mainDiv, TaskList } from './views/javascripts/main';
 import DefaultTask from './views/javascripts/_default-values';
 
-
+const listName = 'default';
 // eslint-disable-next-line
 let bodyStructure = null;
 
@@ -20,7 +20,6 @@ const BodyStructure = () => {
   leftMenu.innerText = 'leftMenu';
   arrElements.push(leftMenu);
   const main = document.createElement('main');
-  main.innerText = 'main';
   arrElements.push(main);
   const footer = document.createElement('footer');
   footer.innerText = 'footer';
@@ -39,12 +38,13 @@ const BodyStructure = () => {
 window.onload = () => {
   bodyStructure = BodyStructure();
   const tempLocal = JSON.parse(localStorage.getItem('default'));
+  bodyStructure.main.id = listName;
   if (tempLocal === null) {
     DefaultTask();
   }
-  TaskList('default');
+  TaskList(listName);
   // console.log(tempLocal);
-  localStorage.removeItem('default');
+  // localStorage.removeItem('default');
   bodyStructure.leftMenu.appendChild(leftMenuDiv);
   bodyStructure.main.appendChild(mainDiv);
 };

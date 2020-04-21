@@ -26,14 +26,14 @@ function OpenCloseContainer() {
   classN.forEach(classes => {
     if (classes === 'close') {
       newClass += 'open';
-      this.innerHTML = '<i class="fas fa-chevron-up"></i>';
+      this.innerHTML = '<i class="fas fa-chevron-down"></i>';
     } else if (classes === 'open') {
       newClass += 'close';
-      this.innerHTML = '<i class="fas fa-chevron-down"></i>';
+      this.innerHTML = '<i class="fas fa-chevron-up"></i>';
     } else {
       newClass += `${classes} `;
     }
-    // console.log(newClass);
+    console.log(newClass);
   });
   parentNode.className = newClass;
 }
@@ -110,13 +110,13 @@ const TaskList = (name) => {
         titleDiv.className = 'group-title';
         const span = document.createElement('span');
         const openBtn = document.createElement('button');
+        openBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
         openBtn.onclick = OpenCloseContainer;
         titleDiv.appendChild(span);
         titleDiv.appendChild(openBtn);
         div.appendChild(titleDiv);
 
         Object.keys(tasks).forEach((task) => {
-          // console.log(tasks[task]);
           span.innerText = tasks[task].date;
           div.appendChild(TaskRowCreator(tasks[task]));
         });
@@ -124,13 +124,10 @@ const TaskList = (name) => {
         if (span.innerText === today) {
           span.innerText = 'Today';
           div.className = 'task-container present open';
-          openBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
         } else if (span.innerText < today) {
           div.className = 'task-container past close';
-          openBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
         } else {
           div.className = 'task-container future close';
-          openBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
         }
         mainDiv.insertBefore(div, mainDiv.childNodes[0]);
       });
