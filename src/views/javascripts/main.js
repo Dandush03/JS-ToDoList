@@ -33,7 +33,6 @@ function OpenCloseContainer() {
     } else {
       newClass += `${classes} `;
     }
-    console.log(newClass);
   });
   parentNode.className = newClass;
 }
