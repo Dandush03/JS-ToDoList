@@ -121,7 +121,6 @@ const DefaultTask = () => {
     }
     return null;
   });
-  // console.log(arrayList);
   localStorage.setItem('default', JSON.stringify(arrayList));
 };
 

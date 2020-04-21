@@ -65,8 +65,6 @@ const ValidateFrm = () => {
     }
   });
 
-  console.log(task);
-  
   if (boolean === true) {
     localArr.push(task);
     localStorage.setItem(listName, JSON.stringify(localArr));

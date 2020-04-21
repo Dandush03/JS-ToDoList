@@ -38,6 +38,23 @@ function OpenCloseContainer() {
   parentNode.className = newClass;
 }
 
+function DeleteRow() {
+  const main = document.getElementsByTagName('main')[0].id;
+  const arrElm = JSON.parse(localStorage.getItem(main));
+  const newArr = [];
+  const { innerText } = this.parentNode.parentNode.childNodes[1].childNodes[0];
+
+  arrElm.forEach(elm => {
+    if (elm.title.toLowerCase() !== innerText.toLowerCase()) {
+      newArr.push(elm);
+    }
+  });
+
+  localStorage.setItem(main, JSON.stringify(newArr));
+  // eslint-disable-next-line
+  location.reload();
+}
+
 const TodayDates = () => {
   let today = new Date();
   const dd = String(today.getDate()).padStart(2, '0');
@@ -77,6 +94,7 @@ const TaskRowCreator = (task) => {
   info.innerHTML = '<i class="fas fa-info"></i>';
   const destroyer = document.createElement('button');
   destroyer.innerHTML = '<i class="fas fa-minus"></i>';
+  destroyer.onclick = DeleteRow;
   clm4.appendChild(info);
   clm4.appendChild(destroyer);
 
