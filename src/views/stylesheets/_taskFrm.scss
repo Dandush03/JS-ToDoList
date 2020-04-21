@@ -1,0 +1,81 @@
+@import './../../variables';
+
+body {
+  overflow: hidden;
+}
+
+.task-popup {
+  background-color: $c-b-form-task;
+  height: $max-p;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: $max-p;
+
+  >div {
+    display: flex;
+    height: $max-p;
+    justify-content: center;
+  }
+}
+
+form {
+  align-self: center;
+  background-color: $c-form-task;
+  display: flex;
+  flex-direction: column;
+  width: $space * 90;
+
+  >h2 {
+    text-align: center;
+  }
+
+  >button {
+    align-self: center;
+    margin: $space * 2;
+    padding: 0;
+    width: $space * 21;
+
+
+    >span:first-child {
+      margin-right: $space * 2;
+    }
+  }
+
+  >div {
+    display: flex;
+
+    >input {
+      width: $max-p / 2;
+    }
+  }
+};
+
+input,
+textarea,
+label {
+  border-radius: $space;
+  margin: $space * 2;
+}
+
+input {
+  font-size: large;
+  height: $space * 10;
+  padding-left: $space * 3;
+}
+
+textarea {
+  font-size: x-large;
+  height: $space * 30;
+  padding: $space * 3;
+  resize: none;
+}
+
+textarea:nth-child(5) {
+  height: $space * 15;
+}
+
+label {
+  margin-bottom: 0;
+}
+

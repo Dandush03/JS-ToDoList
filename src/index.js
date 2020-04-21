@@ -1,4 +1,8 @@
 import './index.scss';
+import leftMenuDiv from './views/javascripts/left-menu';
+import { mainDiv, TaskList } from './views/javascripts/main';
+import DefaultTask from './views/javascripts/_default-values';
+
 
 // eslint-disable-next-line
 let bodyStructure = null;
@@ -12,8 +16,8 @@ const BodyStructure = () => {
   header.innerText = 'header';
   arrElements.push(header);
   const leftMenu = document.createElement('div');
-  leftMenu.className = 'left-menu';
-  leftMenu.innerText = 'Menu';
+  leftMenu.className = 'left-leftMenu';
+  leftMenu.innerText = 'leftMenu';
   arrElements.push(leftMenu);
   const main = document.createElement('main');
   main.innerText = 'main';
@@ -26,10 +30,21 @@ const BodyStructure = () => {
     document.body.appendChild(element);
   });
 
-  return { header, main, footer };
+  return {
+    header, leftMenu, main, footer,
+  };
 };
 
 
 window.onload = () => {
   bodyStructure = BodyStructure();
+  const tempLocal = JSON.parse(localStorage.getItem('default'));
+  if (tempLocal === null) {
+    DefaultTask();
+  }
+  TaskList('default');
+  // console.log(tempLocal);
+  localStorage.removeItem('default');
+  bodyStructure.leftMenu.appendChild(leftMenuDiv);
+  bodyStructure.main.appendChild(mainDiv);
 };

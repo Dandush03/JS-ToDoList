@@ -1,0 +1,106 @@
+@import './../../variables';
+
+main {
+  position: relative;
+}
+
+.task-container {
+  border-color: $c-border-row;
+  border-radius: $space;
+  border-style: solid;
+  border-width: $space / $space;
+  display: flex;
+  flex-direction: column;
+  margin: $space * 2;
+
+  >:first-child {
+    margin: $space * 5;
+  }
+}
+
+.row {
+  background-color: $c-bg-row;
+  border-color: $c-border-row;
+  border-radius: $space;
+  border-style: solid;
+  border-width: $space / $space;
+  display: flex;
+  justify-content: space-evenly;
+  margin: $space * 2 $space * 5;
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  >:last-child {
+    display: flex;
+    flex-direction: row;
+
+    >:last-child {
+      fill: $c-destroy-btn;
+    }
+  }
+
+  button {
+    background-color: transparent;
+    border: 0;
+    margin: $space * 2;
+    padding: $space;
+  }
+}
+
+.title-desc {
+  > :first-child {
+    font-weight: bolder;
+  }
+}
+
+.fa-info {
+  path {
+    fill: $c-info-btn;
+  }
+}
+
+.fa-minus {
+  path {
+    fill: $c-destroy-btn;
+  }
+}
+
+.present {
+  background-color: $c-bg-present;
+  color: $c-present;
+}
+
+.past {
+  background-color: $c-bg-past;
+  color: $c-past;
+}
+
+.future {
+  background-color: $c-bg-future;
+  color: $c-future;
+}
+
+.group-title {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+  }
+}
+
+.close {
+  height: $space * 15;
+  overflow: hidden;
+}
+
+.open {
+  height: auto;
+}
