@@ -18,7 +18,7 @@ function timeSort(a, b) {
   return 0;
 }
 
-function OpenCloseContainer() {
+function openCloseContainer() {
   const { parentNode } = this.parentNode;
   let classN = parentNode.className;
   classN = classN.split(' ');
@@ -37,21 +37,34 @@ function OpenCloseContainer() {
   parentNode.className = newClass;
 }
 
-function DeleteRow() {
+function deleteRow() {
   const main = document.getElementsByTagName('main')[0].id;
   const arrElm = JSON.parse(localStorage.getItem(main));
   const newArr = [];
-  const { innerText } = this.parentNode.parentNode.childNodes[1].childNodes[0];
-
+  const { innerText } = this.parentNode.parentNode.childNodes[1];
+  let counter = 0;
   arrElm.forEach(elm => {
-    if (elm.title.toLowerCase() !== innerText.toLowerCase()) {
+    if (elm.id !== Number(innerText)) {
+      elm.id = counter;
       newArr.push(elm);
+      counter += 1;
     }
   });
 
   localStorage.setItem(main, JSON.stringify(newArr));
   // eslint-disable-next-line
   location.reload();
+}
+
+function openFrm() {
+  const main = document.getElementsByTagName('main')[0].id;
+  const arrElm = JSON.parse(localStorage.getItem(main));
+  const { innerText } = this.parentNode.parentNode.childNodes[1];
+  arrElm.forEach(elm => {
+    if (elm.id === Number(innerText)) {
+      TaskForm(elm);
+    }
+  });
 }
 
 const TodayDates = () => {
@@ -68,6 +81,10 @@ const TodayDates = () => {
 const TaskRowCreator = (task) => {
   const row = document.createElement('div');
   row.className = 'row';
+
+  const id = document.createElement('label');
+  id.innerText = task.id;
+  id.style.display = 'none';
 
   const clm1 = document.createElement('div');
   const check = document.createElement('span');
@@ -91,13 +108,15 @@ const TaskRowCreator = (task) => {
   const clm4 = document.createElement('div');
   const info = document.createElement('button');
   info.innerHTML = '<i class="fas fa-info"></i>';
+  info.onclick = openFrm;
   const destroyer = document.createElement('button');
   destroyer.innerHTML = '<i class="fas fa-minus"></i>';
-  destroyer.onclick = DeleteRow;
+  destroyer.onclick = deleteRow;
   clm4.appendChild(info);
   clm4.appendChild(destroyer);
 
   row.appendChild(clm1);
+  row.appendChild(id);
   row.appendChild(clm2);
   row.appendChild(clm3);
   row.appendChild(clm4);
@@ -128,7 +147,7 @@ const TaskList = (name) => {
         const span = document.createElement('span');
         const openBtn = document.createElement('button');
         openBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
-        openBtn.onclick = OpenCloseContainer;
+        openBtn.onclick = openCloseContainer;
         titleDiv.appendChild(span);
         titleDiv.appendChild(openBtn);
         div.appendChild(titleDiv);

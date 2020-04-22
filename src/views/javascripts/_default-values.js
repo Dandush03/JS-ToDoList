@@ -20,7 +20,7 @@ const Main = () => {
           break;
         }
         case 'time': {
-          defaultTask[key] = '01:20:00 AM';
+          defaultTask[key] = '01:20:00 PM';
           break;
         }
         case 'priority': {
@@ -29,6 +29,10 @@ const Main = () => {
         }
         case 'status': {
           defaultTask[key] = '1';
+          break;
+        }
+        case 'id': {
+          defaultTask[key] = '0';
           break;
         }
         default:
@@ -66,6 +70,10 @@ const Main = () => {
           defaultTask[key] = '1';
           break;
         }
+        case 'id': {
+          defaultTask[key] = '1';
+          break;
+        }
         default:
           defaultTask[key] = 'This is the first Note';
       }
@@ -100,6 +108,10 @@ const Main = () => {
         }
         case 'status': {
           defaultTask[key] = '1';
+          break;
+        }
+        case 'id': {
+          defaultTask[key] = '2';
           break;
         }
         default:
