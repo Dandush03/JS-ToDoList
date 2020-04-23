@@ -10,6 +10,8 @@ const CreateFrm = () => {
   const subDiv = document.createElement('div');
   mainDiv.className = 'task-popup';
   const frm = document.createElement('form');
+  frm.id = 'new-list';
+  frm.className = 'popup-frm';
 
   const h2 = document.createElement('h2');
   h2.innerText = 'New List Creator';
@@ -22,6 +24,7 @@ const CreateFrm = () => {
   divBtn.className = 'btn-container';
 
   const submit = document.createElement('button');
+  submit.name = 'submit';
   const submitSpan = document.createElement('span');
   submitSpan.innerText = 'create';
   const submitIcon = document.createElement('span');
@@ -38,19 +41,25 @@ const CreateFrm = () => {
   const cancelIcon = document.createElement('span');
   cancelIcon.innerHTML = '<i class="fas fa-ban"></i>';
 
-  const errDiv = document.createElement('div')
-  errDiv.className = 'error-msg'
+  const errDiv = document.createElement('div');
+  errDiv.className = 'error-msg';
 
   function validate() {
+    let boolean = true;
     const errMsg = document.createElement('span');
     errDiv.innerHTML = '';
     if (input.value === '') {
       errMsg.innerText = 'Name Can\'t Be Empty';
       errDiv.appendChild(errMsg);
       frm.insertBefore(errDiv, frm.childNodes[1]);
-      return false;
+      boolean = false;
     }
-    return true;
+    if (boolean === true) {
+      localStorage.setItem(input.value, '');
+    }
+    // eslint-disable-next-line
+    location.reload();
+    return boolean;
   }
 
   cancel.appendChild(cancelSpan);
