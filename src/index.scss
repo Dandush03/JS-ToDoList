@@ -3,13 +3,10 @@
 * {
   box-sizing: border-box;
 }
-
 body {
   background: $c-body;
   display: grid;
-  grid-template-areas: 'menu header header header'
-                       'menu main main main'
-                       'footer footer footer footer';
+  grid-template-areas: 'menu header header header' 'menu main main main' 'footer footer footer footer';
   grid-template-columns: minmax(auto, $space * 60);
   grid-template-rows: $space * 15 100% $space * 10;
   margin: 0;
