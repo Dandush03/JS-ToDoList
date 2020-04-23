@@ -1,6 +1,6 @@
 import '../stylesheets/left-menu.scss';
 import { TaskList } from './main';
-import { createFrm } from './_newListFrm';
+import CreateFrm from './_newListFrm';
 
 // localStorage.setItem('test', '');
 const leftMenuDiv = document.createElement('div');
@@ -42,7 +42,7 @@ const CreateMenu = () => {
   icon.innerHTML = '<i class="fas fa-plus"></i>';
   btn.appendChild(span);
   btn.appendChild(icon);
-  btn.onclick = createFrm;
+  btn.onclick = CreateFrm;
   btnContainer.appendChild(btn);
   leftMenuDiv.appendChild(btnContainer);
 };
