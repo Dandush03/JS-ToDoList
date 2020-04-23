@@ -176,3 +176,4 @@ rules:
     - allow-leading-underscore: true
       convention: hyphenatedlowercase
   zero-unit: 1
+  no-url-domains: false
