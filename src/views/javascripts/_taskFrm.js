@@ -26,7 +26,10 @@ const TaskForm = (e) => {
   const ValidateFrm = () => {
     let listName = document.getElementsByTagName('main');
     listName = listName[0].id;
-    const localArr = JSON.parse(localStorage.getItem(listName));
+    let localArr = [];
+    if (localStorage.getItem(listName) !== '') {
+      localArr = JSON.parse(localStorage.getItem(listName));
+    }
     const task = Task();
 
     let boolean = true;

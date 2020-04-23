@@ -70,7 +70,7 @@ function openFrm() {
 const TodayDates = () => {
   let today = new Date();
   const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
   const yyyy = today.getFullYear();
 
   today = `${mm}/${dd}/${yyyy}`;
@@ -124,53 +124,6 @@ const TaskRowCreator = (task) => {
   return row;
 };
 
-const TaskList = (name) => {
-  const { today } = TodayDates();
-  Object.keys(taskArr).forEach(key => {
-    if (key === name) {
-      const tasks = JSON.parse(taskArr[key]).sort(timeSort);
-
-      const GroupByDate = tasks.reduce((taskGroups, task) => {
-        const { date } = task;
-        if (!taskGroups[date]) {
-          taskGroups[date] = [];
-        }
-        taskGroups[date].push(task);
-        return taskGroups;
-      }, {});
-
-      Object.keys(GroupByDate).forEach(elem => {
-        const tasks = GroupByDate[elem];
-        const div = document.createElement('div');
-        const titleDiv = document.createElement('div');
-        titleDiv.className = 'group-title';
-        const span = document.createElement('span');
-        const openBtn = document.createElement('button');
-        openBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
-        openBtn.onclick = openCloseContainer;
-        titleDiv.appendChild(span);
-        titleDiv.appendChild(openBtn);
-        div.appendChild(titleDiv);
-
-        Object.keys(tasks).forEach((task) => {
-          span.innerText = tasks[task].date;
-          div.appendChild(TaskRowCreator(tasks[task]));
-        });
-
-        if (span.innerText === today) {
-          span.innerText = 'Today';
-          div.className = 'task-container present open';
-        } else if (span.innerText < today) {
-          div.className = 'task-container past close';
-        } else {
-          div.className = 'task-container future close';
-        }
-        mainDiv.insertBefore(div, mainDiv.childNodes[0]);
-      });
-    }
-  });
-};
-
 const NewTaskBtn = () => {
   const btn = document.createElement('button');
   btn.className = 'create-task';
@@ -187,8 +140,60 @@ const NewTaskBtn = () => {
   return btn;
 };
 
-const newTaskBtn = NewTaskBtn();
+const TaskList = (name) => {
+  localStorage.setItem('lastConnection', name);
+  const main = document.body.getElementsByTagName('main')[0];
+  main.id = name;
+  const { today } = TodayDates();
+  Object.keys(taskArr).forEach(key => {
+    if (key === name) {
+      mainDiv.innerHTML = '';
+      if (taskArr[key].length !== 0) {
+        const tasks = JSON.parse(taskArr[key]).sort(timeSort);
 
-mainDiv.appendChild(newTaskBtn);
+        const GroupByDate = tasks.reduce((taskGroups, task) => {
+          const { date } = task;
+          if (!taskGroups[date]) {
+            taskGroups[date] = [];
+          }
+          taskGroups[date].push(task);
+          return taskGroups;
+        }, {});
+
+        Object.keys(GroupByDate).forEach(elem => {
+          const tasks = GroupByDate[elem];
+          const div = document.createElement('div');
+          const titleDiv = document.createElement('div');
+          titleDiv.className = 'group-title';
+          const span = document.createElement('span');
+          const openBtn = document.createElement('button');
+          openBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+          openBtn.onclick = openCloseContainer;
+          titleDiv.appendChild(span);
+          titleDiv.appendChild(openBtn);
+          div.appendChild(titleDiv);
+
+          Object.keys(tasks).forEach((task) => {
+            span.innerText = tasks[task].date;
+            div.appendChild(TaskRowCreator(tasks[task]));
+          });
+
+          if (span.innerText === today) {
+            span.innerText = 'Today';
+            div.className = 'task-container present open';
+          } else if (span.innerText < today) {
+            div.className = 'task-container past close';
+          } else {
+            div.className = 'task-container future close';
+          }
+          mainDiv.insertBefore(div, mainDiv.childNodes[0]);
+        });
+      }
+    }
+  });
+  const newTaskBtn = NewTaskBtn();
+
+  mainDiv.appendChild(newTaskBtn);
+};
 
 export { mainDiv, TaskList };

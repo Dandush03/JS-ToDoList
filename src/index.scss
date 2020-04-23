@@ -5,13 +5,13 @@
 }
 
 body {
-  background-color: $c-body;
+  background: $c-body;
   display: grid;
-  grid-gap: $space * 2;
   grid-template-areas:
-  'header header header header'
+  'menu header header header'
   'menu main main main'
   'footer footer footer footer';
+  grid-template-columns: minmax(auto, $space * 60);
   grid-template-rows: $space * 15 100% $space * 10;
   margin: 0;
   min-height: $max-vh;
@@ -21,13 +21,13 @@ body {
 }
 
 header {
-  background-color: $c-header;
   grid-area: header;
 }
 
 .left-menu {
-  background-color: $c-left-menu;
   grid-area: menu;
+  max-width: $space * 60;
+  min-width: $space * 46;
 }
 
 main {

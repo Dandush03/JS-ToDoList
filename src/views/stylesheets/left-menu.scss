@@ -1,1 +1,49 @@
 @import './../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+
+.logo {
+  display: flex;
+  font-family: 'Caveat', cursive;
+  font-size: $f-size * 2.5;
+  height: $space * 15;
+  justify-content: center;
+
+  h2 {
+    background-clip: text;
+    background-image: $c-logo;
+    color: transparent;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Caveat', cursive;
+  font-size: $f-size * 2;
+
+  .menu-item {
+    display: flex;
+    list-style-type: none;
+
+    .menu-link {
+      color: $c-lef-menu;
+      margin: $space * 2;
+      text-decoration: none;
+      text-transform: capitalize;
+      width: 100%;
+    }
+  }
+}
+
+.new-list-btn {
+  display: flex;
+  justify-content: center;
+
+  span {
+    >:last-child {
+      margin-left: $space * 2;
+    }
+  }
+}

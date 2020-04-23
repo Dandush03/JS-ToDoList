@@ -1,6 +1,8 @@
 @import './../../variables';
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
 
 main {
+  font-family: 'Courgette', cursive;
   position: relative;
 }
 
@@ -114,4 +116,12 @@ main {
 
 .open {
   height: auto;
+}
+
+.create-task {
+  margin: $space * 2;
+
+  >:last-child {
+    margin-left: $space;
+  }
 }

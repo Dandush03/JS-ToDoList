@@ -1,12 +1,14 @@
-$c-body: #789;
-$c-header: #639;
-$c-left-menu: #364;
+$c-body-gradient-1: #417090;
+$c-body-gradient-2: #3fb9e0;
+$c-body-gradient-3: #32a3d7;
+$c-body: linear-gradient(81deg, $c-body-gradient-1 30%, $c-body-gradient-2 66%, $c-body-gradient-3 100%);
+$c-left-menu: #83d3ff;
 $c-main: #f0f0f0;
 $c-footer: #333;
-$c-b-form-task:  rgba(90, 77, 136, .588);
-$c-form-task:  #96b7ff;
-$c-title-desc-t:  #fff;
-$c-title-desc-d:  rgba(255, 255, 255, .725);
+$c-b-form-task: rgba(90, 77, 136, .588);
+$c-form-task: #96b7ff;
+$c-title-desc-t: #fff;
+$c-title-desc-d: rgba(255, 255, 255, .725);
 $c-past: #834545;
 $c-present: #0f8300;
 $c-future: #963aff;
@@ -17,10 +19,17 @@ $c-info-btn: #2883a7;
 $c-destroy-btn: #a72828;
 $c-bg-row: #fff;
 $c-border-row: #858383;
-$c-frm-error: rgb(231, 0, 0);
+$c-frm-error: #e70000;
+$c-lef-menu: #fff;
+$c-logo-gradient-1: #c0e6ff;
+$c-logo-gradient-2: #49d3ff;
+$c-logo-gradient-3: #a1e2ff;
+$c-logo: linear-gradient(263deg, $c-logo-gradient-1 37%, $c-logo-gradient-2 74%, $c-logo-gradient-3 100%);
 
 $space: 5px;
 
 $max-p: 100%;
 $max-vw: 100vw;
 $max-vh: 100vh;
+
+$f-size: 1em;

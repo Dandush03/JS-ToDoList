@@ -7,6 +7,9 @@ const listName = 'default';
 // eslint-disable-next-line
 let bodyStructure = null;
 
+if (!localStorage.getItem('lastConnection')) {
+  localStorage.setItem('lastConnection', 'default');
+}
 
 /** Crete the body structure */
 const BodyStructure = () => {
@@ -16,8 +19,7 @@ const BodyStructure = () => {
   header.innerText = 'header';
   arrElements.push(header);
   const leftMenu = document.createElement('div');
-  leftMenu.className = 'left-leftMenu';
-  leftMenu.innerText = 'leftMenu';
+  leftMenu.className = 'left-menu';
   arrElements.push(leftMenu);
   const main = document.createElement('main');
   arrElements.push(main);
@@ -42,9 +44,7 @@ window.onload = () => {
   if (tempLocal === null) {
     DefaultTask();
   }
-  TaskList(listName);
-  // console.log(tempLocal);
-  // localStorage.removeItem('default');
+  TaskList(localStorage.getItem('lastConnection'));
   bodyStructure.leftMenu.appendChild(leftMenuDiv);
   bodyStructure.main.appendChild(mainDiv);
 };
