@@ -16,7 +16,6 @@ const BodyStructure = () => {
   const arrElements = [];
 
   const header = document.createElement('header');
-  header.innerText = 'header';
   arrElements.push(header);
   const leftMenu = document.createElement('div');
   leftMenu.className = 'left-menu';
@@ -24,7 +23,6 @@ const BodyStructure = () => {
   const main = document.createElement('main');
   arrElements.push(main);
   const footer = document.createElement('footer');
-  footer.innerText = 'footer';
   arrElements.push(footer);
 
   arrElements.forEach((element) => {
