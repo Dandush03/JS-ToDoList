@@ -4,7 +4,7 @@
 
 #### Microverse Fourth JS Project
 
-![Screenshot from 2020-04-15 18-33-10](https://user-images.githubusercontent.com/51087936/79395426-9d7f6980-7f47-11ea-8f94-3612a06b9dec.png)
+![Screenshot from 2020-04-23 16-48-40](https://user-images.githubusercontent.com/51087936/80148000-5c5c0a80-8582-11ea-96e2-677a913f0a37.png)
 
 ---
 
