@@ -2,7 +2,16 @@ import '../stylesheets/left-menu.scss';
 import { TaskList } from './main';
 import CreateFrm from './_newListFrm';
 
-// localStorage.setItem('test', '');
+const changeSelection = () => {
+  const menu = document.getElementsByClassName('menu-link');
+  Object.keys(menu).forEach(key => {
+    menu[key].className = 'menu-link';
+    if (menu[key].innerText.toLowerCase() === localStorage.getItem('lastConnection').toLowerCase()) {
+      menu[key].className += ' selected';
+    }
+  });
+};
+
 const leftMenuDiv = document.createElement('div');
 const CreateMenu = () => {
   const logoDiv = document.createElement('div');
@@ -21,9 +30,12 @@ const CreateMenu = () => {
       li.className = 'menu-item';
       const a = document.createElement('a');
       a.className = 'menu-link';
+      if (localStorage.getItem('lastConnection') === key) {
+        a.className += ' selected';
+      }
       a.innerText = key;
       a.href = '#';
-      a.onclick = () => { TaskList(key); };
+      a.onclick = () => { TaskList(key); changeSelection(); };
 
       li.appendChild(a);
       ul.appendChild(li);

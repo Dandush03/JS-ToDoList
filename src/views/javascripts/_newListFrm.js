@@ -56,6 +56,7 @@ const CreateFrm = () => {
     }
     if (boolean === true) {
       localStorage.setItem(input.value, '');
+      localStorage.setItem('lastConnection', input.value);
     }
     // eslint-disable-next-line
     location.reload();
