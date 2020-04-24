@@ -1,11 +1,8 @@
 import '../stylesheets/_taskFrm.scss';
+import { closeFrm, validateNewFrm } from './logic';
 
 const CreateFrm = () => {
   const mainDiv = document.createElement('div');
-
-  function closeFrm() {
-    document.body.removeChild(mainDiv);
-  }
 
   const subDiv = document.createElement('div');
   mainDiv.className = 'task-popup';
@@ -34,7 +31,7 @@ const CreateFrm = () => {
   submit.appendChild(submitIcon);
 
   const cancel = document.createElement('button');
-  cancel.onclick = closeFrm;
+  cancel.onclick = () => { closeFrm(mainDiv); };
   cancel.setAttribute('type', 'button');
   const cancelSpan = document.createElement('span');
   cancelSpan.innerText = 'cancel';
@@ -44,24 +41,6 @@ const CreateFrm = () => {
   const errDiv = document.createElement('div');
   errDiv.className = 'error-msg';
 
-  function validate() {
-    let boolean = true;
-    const errMsg = document.createElement('span');
-    errDiv.innerHTML = '';
-    if (input.value === '') {
-      errMsg.innerText = 'Name Can\'t Be Empty';
-      errDiv.appendChild(errMsg);
-      frm.insertBefore(errDiv, frm.childNodes[1]);
-      boolean = false;
-    }
-    if (boolean === true) {
-      localStorage.setItem(input.value, '');
-      localStorage.setItem('lastConnection', input.value);
-    }
-    // eslint-disable-next-line
-    location.reload();
-    return boolean;
-  }
 
   cancel.appendChild(cancelSpan);
   cancel.appendChild(cancelIcon);
@@ -73,7 +52,7 @@ const CreateFrm = () => {
   frm.appendChild(lbl);
   frm.appendChild(input);
   frm.appendChild(divBtn);
-  frm.onsubmit = validate;
+  frm.onsubmit = () => validateNewFrm(errDiv, input, frm);
 
   subDiv.appendChild(frm);
   mainDiv.appendChild(subDiv);

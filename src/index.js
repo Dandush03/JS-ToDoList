@@ -34,8 +34,15 @@ const BodyStructure = () => {
   };
 };
 
+/*
+function local() {
+  Object.keys(localStorage).forEach(i => {
+    localStorage.removeItem(i);
+  });
+}  */
 
 window.onload = () => {
+  // local();
   bodyStructure = BodyStructure();
   const tempLocal = JSON.parse(localStorage.getItem('default'));
   bodyStructure.main.id = listName;

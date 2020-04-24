@@ -1,98 +1,9 @@
-
+import {
+  ValidateTaskFrm, Task, closeTaskFrm,
+} from './logic';
 import '../stylesheets/_taskFrm.scss';
 
-const Task = () => {
-  const title = null;
-  const description = null;
-  const date = null;
-  const time = null;
-  const priority = null;
-  const note = null;
-  const status = null;
-  const id = null;
-
-  return {
-    title, description, date, time, priority, note, status, id,
-  };
-};
-
-function closeFrm() {
-  const main = document.getElementById('mainContainer');
-  const container = document.getElementsByClassName('task-popup');
-  main.removeChild(container[0]);
-}
-
 const TaskForm = (e) => {
-  const ValidateFrm = () => {
-    let listName = document.getElementsByTagName('main');
-    listName = listName[0].id;
-    let localArr = [];
-    if (localStorage.getItem(listName) !== '') {
-      localArr = JSON.parse(localStorage.getItem(listName));
-    }
-    const task = Task();
-
-    let boolean = true;
-    const frm = document.getElementById('new-task');
-    const inputs = frm.querySelectorAll('input, textarea, date, time');
-    let div = document.getElementById('error-msg');
-
-    if (div === null) {
-      div = document.createElement('div');
-      div.className = 'error-msg';
-      div.id = 'error-msg';
-    } else {
-      div.innerHTML = '';
-    }
-    inputs.forEach(element => {
-      const { value, name } = element;
-      if (value === '') {
-        const span = document.createElement('span');
-        span.innerText = `${name} can't be empty`;
-        div.appendChild(span);
-        boolean = false;
-      } else {
-        task[name] = value;
-
-        if (name === 'date') {
-          const newValue = value.split('-');
-          task[name] = `${newValue[1]}/${newValue[2]}/${newValue[0]}`;
-        } else if (name === 'time') {
-          const newValue = value.split(':');
-          if (newValue[0] === '00') {
-            task[name] = `${12}:${newValue[1]}:00 AM`;
-          } else if (newValue[0] === '12') {
-            task[name] = `${12}:${newValue[1]}:00 PM`;
-          } else if (newValue[0] < 12) {
-            task[name] = `${newValue[0]}:${newValue[1]}:00 AM`;
-          } else if (newValue[0] > 12) {
-            task[name] = `${newValue[0] - 12}:${newValue[1]}:00 PM`;
-          }
-        }
-      }
-    });
-    if (e.id === undefined) {
-      task.id = localArr.length;
-    } else {
-      task.id = e.id;
-    }
-
-    if (boolean === true) {
-      if (task.id === e.id) {
-        localArr.forEach((element, index) => {
-          if (element.id === task.id) {
-            localArr[index] = task;
-          }
-        });
-      } else {
-        localArr.push(task);
-      }
-      localStorage.setItem(listName, JSON.stringify(localArr));
-    }
-    frm.insertBefore(div, frm.childNodes[1]);
-    return boolean;
-  };
-
   const mainContainer = document.createElement('div');
   mainContainer.className = 'task-popup';
   const subContainer = document.createElement('div');
@@ -102,7 +13,7 @@ const TaskForm = (e) => {
   frm.id = 'new-task';
   frm.className = 'popup-frm';
 
-  frm.onsubmit = ValidateFrm;
+  frm.onsubmit = () => ValidateTaskFrm(e);
   const frmTitle = document.createElement('h2');
   if (e.title !== undefined) {
     frmTitle.innerText = 'Edit Task';
@@ -170,7 +81,26 @@ const TaskForm = (e) => {
           }
           input.value = e[key];
         }
-        input.setAttribute('type', 'text');
+        if (key === 'priority') {
+          input = document.createElement('select');
+          const op1 = document.createElement('option');
+          op1.value = 1;
+          op1.text = 'Normal';
+          const op2 = document.createElement('option');
+          op2.value = 2;
+          op2.text = 'Important';
+          const op3 = document.createElement('option');
+          op3.value = 3;
+          op3.text = 'Very Important';
+
+          input.appendChild(op1);
+          input.appendChild(op2);
+          input.appendChild(op3);
+          input.selectedIndex = e[key] - 1;
+          input.name = key;
+        } else {
+          input.setAttribute('type', 'text');
+        }
       }
     }
     if (input !== null) {
@@ -197,7 +127,7 @@ const TaskForm = (e) => {
   divBtn.appendChild(submit);
 
   const cancel = document.createElement('button');
-  cancel.onclick = closeFrm;
+  cancel.onclick = () => { closeTaskFrm(); };
   cancel.setAttribute('type', 'button');
   const cancelSpan = document.createElement('span');
   cancelSpan.innerText = 'cancel';
@@ -216,4 +146,5 @@ const TaskForm = (e) => {
   append.appendChild(mainContainer);
 };
 
-export { TaskForm, Task };
+
+export default TaskForm;

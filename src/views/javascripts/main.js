@@ -1,82 +1,14 @@
-import { TaskForm } from './_taskFrm';
+import TaskForm from './_taskFrm';
+import {
+  timeSort, openCloseContainer,
+  deleteRow, TodayDates, checkStatus,
+} from './logic';
 import '../stylesheets/main.scss';
+
 
 const taskArr = localStorage;
 const mainDiv = document.createElement('div');
 mainDiv.id = 'mainContainer';
-
-function timeSort(a, b) {
-  a = `${a.date} ${a.time}`;
-  b = `${b.date} ${b.time}`;
-  a = new Date(a);
-  b = new Date(b);
-  if (a > b) {
-    return -1;
-  } if (a < b) {
-    return 1;
-  }
-  return 0;
-}
-
-function openCloseContainer() {
-  const { parentNode } = this.parentNode;
-  let classN = parentNode.className;
-  classN = classN.split(' ');
-  let newClass = '';
-  classN.forEach(classes => {
-    if (classes === 'close') {
-      newClass += 'open';
-      this.innerHTML = '<i class="fas fa-chevron-down"></i>';
-    } else if (classes === 'open') {
-      newClass += 'close';
-      this.innerHTML = '<i class="fas fa-chevron-up"></i>';
-    } else {
-      newClass += `${classes} `;
-    }
-  });
-  parentNode.className = newClass;
-}
-
-function deleteRow() {
-  const main = document.getElementsByTagName('main')[0].id;
-  const arrElm = JSON.parse(localStorage.getItem(main));
-  const newArr = [];
-  const { innerText } = this.parentNode.parentNode.childNodes[1];
-  let counter = 0;
-  arrElm.forEach(elm => {
-    if (elm.id !== Number(innerText)) {
-      elm.id = counter;
-      newArr.push(elm);
-      counter += 1;
-    }
-  });
-
-  localStorage.setItem(main, JSON.stringify(newArr));
-  // eslint-disable-next-line
-  location.reload();
-}
-
-function openFrm() {
-  const main = document.getElementsByTagName('main')[0].id;
-  const arrElm = JSON.parse(localStorage.getItem(main));
-  const { innerText } = this.parentNode.parentNode.childNodes[1];
-  arrElm.forEach(elm => {
-    if (elm.id === Number(innerText)) {
-      TaskForm(elm);
-    }
-  });
-}
-
-const TodayDates = () => {
-  let today = new Date();
-  const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const yyyy = today.getFullYear();
-
-  today = `${mm}/${dd}/${yyyy}`;
-
-  return { today };
-};
 
 const TaskRowCreator = (task) => {
   const row = document.createElement('div');
@@ -87,8 +19,19 @@ const TaskRowCreator = (task) => {
   id.style.display = 'none';
 
   const clm1 = document.createElement('div');
-  const check = document.createElement('span');
-  check.innerText = 'status';
+  const check = document.createElement('input');
+  check.setAttribute('type', 'checkbox');
+  if (task.status === 1 || task.status === '1') {
+    check.checked = true;
+    row.className += ' completed';
+  }
+  if (task.priority === 2 || Number(task.priority) === 2) {
+    row.className += ' important';
+  }
+  if (task.priority === 3 || Number(task.priority) === 3) {
+    row.className += ' very-important';
+  }
+  check.onchange = (e) => checkStatus(e);
   clm1.appendChild(check);
 
   const clm2 = document.createElement('div');
@@ -108,7 +51,17 @@ const TaskRowCreator = (task) => {
   const clm4 = document.createElement('div');
   const info = document.createElement('button');
   info.innerHTML = '<i class="fas fa-info"></i>';
-  info.onclick = openFrm;
+  info.setAttribute('type', 'button');
+  info.onclick = () => {
+    const main = document.getElementsByTagName('main')[0].id;
+    const arrElm = JSON.parse(localStorage.getItem(main));
+    const { innerText } = row.childNodes[1];
+    arrElm.forEach(elm => {
+      if (elm.id === innerText || elm.id === Number(innerText)) {
+        TaskForm(elm);
+      }
+    });
+  };
   const destroyer = document.createElement('button');
   destroyer.innerHTML = '<i class="fas fa-minus"></i>';
   destroyer.onclick = deleteRow;

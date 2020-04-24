@@ -1,4 +1,4 @@
-import { Task } from './_taskFrm';
+import { Task } from './logic';
 
 const arrayList = [];
 
@@ -16,7 +16,7 @@ const Main = () => {
           break;
         }
         case 'date': {
-          defaultTask[key] = '04/21/2020';
+          defaultTask[key] = '04/24/2020';
           break;
         }
         case 'time': {
@@ -24,7 +24,7 @@ const Main = () => {
           break;
         }
         case 'priority': {
-          defaultTask[key] = '1';
+          defaultTask[key] = 1;
           break;
         }
         case 'status': {
@@ -55,7 +55,7 @@ const Main = () => {
           break;
         }
         case 'date': {
-          defaultTask[key] = '03/05/2020';
+          defaultTask[key] = '04/24/2020';
           break;
         }
         case 'time': {
@@ -63,11 +63,11 @@ const Main = () => {
           break;
         }
         case 'priority': {
-          defaultTask[key] = '1';
+          defaultTask[key] = 2;
           break;
         }
         case 'status': {
-          defaultTask[key] = '1';
+          defaultTask[key] = '0';
           break;
         }
         case 'id': {
@@ -95,7 +95,7 @@ const Main = () => {
           break;
         }
         case 'date': {
-          defaultTask[key] = '10/10/2020';
+          defaultTask[key] = '04/24/2020';
           break;
         }
         case 'time': {
@@ -103,11 +103,11 @@ const Main = () => {
           break;
         }
         case 'priority': {
-          defaultTask[key] = '1';
+          defaultTask[key] = 3;
           break;
         }
         case 'status': {
-          defaultTask[key] = '1';
+          defaultTask[key] = '0';
           break;
         }
         case 'id': {

@@ -1,5 +1,37 @@
 @import './../../variables';
 
+@keyframes line {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: $max-p * .9;
+  }
+}
+
+@keyframes very-important {
+  0% {
+    background-color: $c-very-important-1;
+  }
+
+  25% {
+    background-color: $c-important;
+  }
+
+  50% {
+    background-color: $c-very-important-2;
+  }
+
+  75% {
+    background-color: $c-important;
+  }
+
+  0% {
+    background-color: $c-very-important-1;
+  }
+}
+
 main {
   font-family: 'Courgette', cursive;
   position: relative;
@@ -14,7 +46,7 @@ main {
   flex-direction: column;
   margin: $space * 2;
 
-  >:first-child {
+  > :first-child {
     margin: $space * 5;
   }
 }
@@ -36,11 +68,11 @@ main {
     position: relative;
   }
 
-  >:last-child {
+  > :last-child {
     display: flex;
     flex-direction: row;
 
-    >:last-child {
+    > :last-child {
       fill: $c-destroy-btn;
     }
   }
@@ -58,7 +90,7 @@ main {
   font-size: smaller;
   width: 50%;
 
-  >span {
+  > span {
     margin: $space;
   }
 
@@ -120,7 +152,33 @@ main {
 .create-task {
   margin: $space * 2;
 
-  >:last-child {
+  > :last-child {
     margin-left: $space;
   }
+}
+
+.completed {
+  position: relative;
+
+  &::before {
+    animation: line 1s;
+    background: $c-logo;
+    border-radius: $space * 6;
+    color: transparent;
+    content: 'aasdasd';
+    height: $space;
+    left: $max-p * .05;
+    position: absolute;
+    top: calc(#{$max-p / 2} - #{$space / 2});
+    width: $max-p * .9;
+  }
+}
+
+.important {
+  background-color: $c-important;
+}
+
+.very-important {
+  animation: very-important 2s infinite;
+  background-color: $c-very-important-1;
 }
