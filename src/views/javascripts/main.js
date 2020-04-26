@@ -1,6 +1,6 @@
 import TaskForm from './_taskFrm';
 import {
-  timeSort, openCloseContainer,
+  timeSort, openCloseContainer, setTask,
   deleteRow, TodayDates, checkStatus,
 } from './logic';
 import '../stylesheets/main.scss';
@@ -21,16 +21,7 @@ const TaskRowCreator = (task) => {
   const clm1 = document.createElement('div');
   const check = document.createElement('input');
   check.setAttribute('type', 'checkbox');
-  if (task.status === 1 || task.status === '1') {
-    check.checked = true;
-    row.className += ' completed';
-  }
-  if (task.priority === 2 || Number(task.priority) === 2) {
-    row.className += ' important';
-  }
-  if (task.priority === 3 || Number(task.priority) === 3) {
-    row.className += ' very-important';
-  }
+  setTask(task, check, row);
   check.onchange = (e) => checkStatus(e);
   clm1.appendChild(check);
 

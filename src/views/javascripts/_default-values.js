@@ -125,15 +125,17 @@ const Main = () => {
 };
 
 
-const DefaultTask = () => {
-  const main = Main();
-  Object.values(main).map((v) => {
-    if (typeof v === 'function') {
-      v.call();
-    }
-    return null;
-  });
-  localStorage.setItem('default', JSON.stringify(arrayList));
+const DefaultTask = (tempLocal) => {
+  if (tempLocal === null) {
+    const main = Main();
+    Object.values(main).map((v) => {
+      if (typeof v === 'function') {
+        v.call();
+      }
+      return null;
+    });
+    localStorage.setItem('default', JSON.stringify(arrayList));
+  }
 };
 
 export default DefaultTask;

@@ -7,11 +7,6 @@ const listName = 'default';
 // eslint-disable-next-line
 let bodyStructure = null;
 
-if (!localStorage.getItem('lastConnection')) {
-  localStorage.setItem('lastConnection', 'default');
-}
-
-/** Crete the body structure */
 const BodyStructure = () => {
   const arrElements = [];
 
@@ -34,21 +29,11 @@ const BodyStructure = () => {
   };
 };
 
-/*
-function local() {
-  Object.keys(localStorage).forEach(i => {
-    localStorage.removeItem(i);
-  });
-}  */
-
 window.onload = () => {
-  // local();
   bodyStructure = BodyStructure();
   const tempLocal = JSON.parse(localStorage.getItem('default'));
   bodyStructure.main.id = listName;
-  if (tempLocal === null) {
-    DefaultTask();
-  }
+  DefaultTask(tempLocal);
   TaskList(localStorage.getItem('lastConnection'));
   bodyStructure.leftMenu.appendChild(leftMenuDiv);
   bodyStructure.main.appendChild(mainDiv);

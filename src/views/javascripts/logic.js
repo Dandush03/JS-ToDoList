@@ -1,3 +1,7 @@
+if (!localStorage.getItem('lastConnection')) {
+  localStorage.setItem('lastConnection', 'default');
+}
+
 const Task = () => {
   const title = null;
   const description = null;
@@ -216,8 +220,21 @@ function checkStatus(e) {
   localStorage.setItem(listName, JSON.stringify(newArr));
 }
 
+function setTask(task, check, row) {
+  if (task.status === 1 || task.status === '1') {
+    check.checked = true;
+    row.className += ' completed';
+  }
+  if (task.priority === 2 || Number(task.priority) === 2) {
+    row.className += ' important';
+  }
+  if (task.priority === 3 || Number(task.priority) === 3) {
+    row.className += ' very-important';
+  }
+}
+
 export {
   validateNewFrm, closeFrm, ValidateTaskFrm, Task, closeTaskFrm,
   changeSelection, timeSort, openCloseContainer, deleteRow,
-  TodayDates, checkStatus,
+  TodayDates, checkStatus, setTask,
 };
