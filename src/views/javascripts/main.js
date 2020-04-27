@@ -1,10 +1,57 @@
 import TaskForm from './_taskFrm';
 import {
-  timeSort, openCloseContainer, setTask,
-  deleteRow, TodayDates, checkStatus,
+  timeSort, setTask,
+  deleteRow, TodayDates,
 } from './logic';
 import '../stylesheets/main.scss';
 
+function checkStatus(e) {
+  let listName = document.getElementsByTagName('main');
+  const container = e.target.parentNode.parentNode;
+  const currentId = container.childNodes[1].innerText;
+  listName = listName[0].id;
+  const newArr = [];
+  const oldArr = JSON.parse(localStorage.getItem(listName));
+  oldArr.forEach(obj => {
+    if (currentId === obj.id || Number(currentId) === obj.id) {
+      if (e.target.checked === true) {
+        e.target.parentNode.parentNode.className += ' completed';
+        obj.status = 1;
+      } else {
+        const classes = e.target.parentNode.parentNode.className.split(' ');
+        let newClasses = '';
+        classes.forEach(c => {
+          if (c !== 'completed') {
+            newClasses += `${c} `;
+          }
+        });
+        container.className = newClasses;
+        obj.status = 0;
+      }
+    }
+    newArr.push(obj);
+  });
+  localStorage.setItem(listName, JSON.stringify(newArr));
+}
+
+function openCloseContainer() {
+  const { parentNode } = this.parentNode;
+  let classN = parentNode.className;
+  classN = classN.split(' ');
+  let newClass = '';
+  classN.forEach(classes => {
+    if (classes === 'close') {
+      newClass += 'open';
+      this.innerHTML = '<i class="fas fa-chevron-up"></i>';
+    } else if (classes === 'open') {
+      newClass += 'close';
+      this.innerHTML = '<i class="fas fa-chevron-down"></i>';
+    } else {
+      newClass += `${classes} `;
+    }
+  });
+  parentNode.className = newClass;
+}
 
 const taskArr = localStorage;
 const mainDiv = document.createElement('div');

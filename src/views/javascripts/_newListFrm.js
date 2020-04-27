@@ -1,5 +1,27 @@
 import '../stylesheets/_taskFrm.scss';
-import { closeFrm, validateNewFrm } from './logic';
+
+function closeFrm(mainDiv) {
+  document.body.removeChild(mainDiv);
+}
+
+function validateNewFrm(errDiv, input, frm) {
+  let boolean = true;
+  const errMsg = document.createElement('span');
+  errDiv.innerHTML = '';
+  if (input.value === '') {
+    errMsg.innerText = 'Name Can\'t Be Empty';
+    errDiv.appendChild(errMsg);
+    frm.insertBefore(errDiv, frm.childNodes[1]);
+    boolean = false;
+  }
+  if (boolean === true) {
+    localStorage.setItem(input.value, '');
+    localStorage.setItem('lastConnection', input.value);
+  }
+  // eslint-disable-next-line
+  location.reload();
+  return boolean;
+}
 
 const CreateFrm = () => {
   const mainDiv = document.createElement('div');

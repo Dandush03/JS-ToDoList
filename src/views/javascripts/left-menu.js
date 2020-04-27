@@ -1,8 +1,17 @@
 import '../stylesheets/left-menu.scss';
-import { changeSelection } from './logic';
 import { TaskList } from './main';
 import CreateFrm from './_newListFrm';
 
+
+const changeSelection = () => {
+  const menu = document.getElementsByClassName('menu-link');
+  Object.keys(menu).forEach(key => {
+    menu[key].className = 'menu-link';
+    if (menu[key].innerText.toLowerCase() === localStorage.getItem('lastConnection').toLowerCase()) {
+      menu[key].className += ' selected';
+    }
+  });
+};
 
 const leftMenuDiv = document.createElement('div');
 const CreateMenu = () => {
