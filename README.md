@@ -30,7 +30,7 @@
 
 ## Active Link to Website
 
-Check the page in this [Live Link](https://raw.githack.com/Dandush03/JS-TicTacToe/feature/setup/index.html)
+Check the page in this [Live Link](https://rawcdn.githack.com/Dandush03/JS-ToDoList/feature/setup/dist/index.html)
 
 ---
 

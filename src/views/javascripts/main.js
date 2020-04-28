@@ -158,7 +158,7 @@ const TaskList = (name) => {
           titleDiv.className = 'group-title';
           const span = document.createElement('span');
           const openBtn = document.createElement('button');
-          openBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+          openBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
           openBtn.onclick = openCloseContainer;
           titleDiv.appendChild(span);
           titleDiv.appendChild(openBtn);
@@ -173,10 +173,11 @@ const TaskList = (name) => {
             span.innerText = 'Today';
             div.className = 'task-container present open';
           } else if (span.innerText < today) {
-            div.className = 'task-container past close';
+            div.className = 'task-container past open';
           } else {
-            div.className = 'task-container future close';
+            div.className = 'task-container future open';
           }
+
           mainDiv.insertBefore(div, mainDiv.childNodes[0]);
         });
       }

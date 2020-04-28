@@ -25,6 +25,8 @@ form {
   border-radius: $space;
   display: flex;
   flex-direction: column;
+  max-height: 70vh;
+  overflow-y: auto;
   width: $space * 90;
 
   >h2 {
@@ -111,4 +113,5 @@ label {
 
 select {
   margin: $space * 2;
+  min-height: $space * 6;
 }
