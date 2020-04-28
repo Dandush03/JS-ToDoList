@@ -1,0 +1,56 @@
+@import './../../variables';
+// sass-lint:disable no-vendor-prefixes
+
+.logo {
+  display: flex;
+  font-family: 'Caveat', cursive;
+  font-size: $f-size * 2.5;
+  height: $space * 15;
+  justify-content: center;
+
+  h2 {
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: $c-logo;
+    color: transparent;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Caveat', cursive;
+  font-size: $f-size * 2;
+  padding: 0;
+
+  .menu-item {
+    display: flex;
+    list-style-type: none;
+
+    .menu-link {
+      color: $c-lef-menu;
+      padding: $space * 2;
+      padding-left: $space * 8;
+      text-decoration: none;
+      text-transform: capitalize;
+      width: 100%;
+    }
+  }
+}
+
+.new-list-btn {
+  display: flex;
+  justify-content: center;
+
+  span {
+    >:last-child {
+      margin-left: $space * 2;
+    }
+  }
+}
+
+.selected {
+  background-color: $c-left-menu-selected;
+}

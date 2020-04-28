@@ -1,0 +1,45 @@
+// sass-lint:disable no-url-domains
+// sass-lint:disable no-url-protocols
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+$c-body-gradient-1: #417090;
+$c-body-gradient-2: #3fb9e0;
+$c-body-gradient-3: #32a3d7;
+$c-body: linear-gradient(81deg, $c-body-gradient-1 30%, $c-body-gradient-2 66%, $c-body-gradient-3 100%);
+$c-left-menu: #83d3ff;
+$c-left-menu-selected: rgba(0, 0, 0, .282);
+$c-main: #f0f0f0;
+$c-footer: #333;
+$c-b-form-task: rgba(90, 77, 136, .588);
+$c-form-task: #96b7ff;
+$c-title-desc-t: #fff;
+$c-title-desc-d: rgba(255, 255, 255, .725);
+$c-past: #834545;
+$c-present: #0f8300;
+$c-future: #963aff;
+$c-bg-past: #ffb4b4;
+$c-bg-present: #aeffc9;
+$c-bg-future: #b9d8ff;
+$c-info-btn: #2883a7;
+$c-destroy-btn: #a72828;
+$c-bg-row: #fff;
+$c-border-row: #858383;
+$c-frm-error: #e70000;
+$c-lef-menu: #fff;
+$c-logo-gradient-1: #c0e6ff;
+$c-logo-gradient-2: #49d3ff;
+$c-logo-gradient-3: #a1e2ff;
+$c-logo: linear-gradient(263deg, $c-logo-gradient-1 37%, $c-logo-gradient-2 74%, $c-logo-gradient-3 100%);
+$c-line: rgba(255, 251, 0, .644);
+$c-important: #e5ff00;
+$c-very-important-1: #ff9d00;
+$c-very-important-2: #f35858;
+
+$space: 5px;
+
+$max-p: 100%;
+$max-vw: 100vw;
+$max-vh: 100vh;
+
+$f-size: 1em;

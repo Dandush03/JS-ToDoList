@@ -1,0 +1,45 @@
+@import 'variables';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $c-body;
+  display: grid;
+  grid-template-areas: 'menu header header header'
+  'menu main main main'
+  'footer footer footer footer';
+  grid-template-columns: minmax(auto, $space * 60);
+  grid-template-rows: $space * 15 100% $space * 10;
+  margin: 0;
+  min-height: $max-vh;
+  overflow: hidden;
+  padding: 0;
+  width: $max-vw;
+}
+
+header {
+  grid-area: header;
+}
+
+.left-menu {
+  grid-area: menu;
+  max-width: $space * 60;
+  min-width: $space * 46;
+}
+
+main {
+  background-color: $c-main;
+  grid-area: main;
+}
+
+footer {
+  background-color: $c-footer;
+  grid-area: footer;
+  height: 100px;
+}
+
+button {
+  border-radius: $space;
+}
